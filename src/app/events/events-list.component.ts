@@ -1,6 +1,7 @@
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IEvent } from '.';
 import { ToastrService } from '../common/toastr.service';
 import { EventService } from './shared/event.service';
 
@@ -21,7 +22,7 @@ import { EventService } from './shared/event.service';
   `,
 })
 export class EventsListComponent implements OnInit {
-  events: any;
+  events: IEvent[];
   // private eventService : pas accessibilite sur le champ dnas le constr mais declare une variable private sur l'objet
   constructor(
     private eventService: EventService,
