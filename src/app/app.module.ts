@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { Error404Component } from './errors/404.component';
 import {
   EventsListComponent,
@@ -18,6 +18,8 @@ import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
+
+declare let toastr: Toastr;
 
 @NgModule({
   imports: [
@@ -38,11 +40,11 @@ import { AuthService } from './user/auth.service';
   ],
   providers: [
     EventService,
-    ToastrService,
     EventRouteActivator,
     EventListResolver,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+    { provide: TOASTR_TOKEN, useValue: toastr },
   ],
   bootstrap: [EventsAppComponent],
 })
