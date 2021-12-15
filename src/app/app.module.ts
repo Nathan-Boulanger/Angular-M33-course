@@ -11,13 +11,14 @@ import {
   CreateEventComponent,
   EventService,
   EventListResolver,
-  EventRouteActivator,
   CreateSessionComponent,
+  EventResolver,
 } from './events';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 declare let toastr: Toastr;
 
@@ -27,6 +28,7 @@ declare let toastr: Toastr;
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   declarations: [
     EventsAppComponent,
@@ -40,7 +42,7 @@ declare let toastr: Toastr;
   ],
   providers: [
     EventService,
-    EventRouteActivator,
+    EventResolver,
     EventListResolver,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
